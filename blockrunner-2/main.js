@@ -12,7 +12,7 @@ let useGravity = true;
 let canJump = true;
 let floating = false;
 let mySpeed = 1;
-let theSpeed = 1;
+let theSpeed = 0;
 let mySpeedSmall = "0";
 
 if (randomHeight === 1) {
@@ -124,7 +124,7 @@ let recordSpeed = function() {
     ctx.textAlign = "left";
     ctx.textBaseline = "top";
     ctx.fillStyle = "White";
-    ctx.fillText("Speed: " + mySpeedSmall.charAt(0) + mySpeedSmall.charAt(1) + mySpeedSmall.charAt(2), 0, 20);
+    ctx.fillText("Speed: " + mySpeedSmall.split(".")[0] + '.' + mySpeedSmall.split('.')[1].substring(0, 1), 0, 20);
 };
 
 let tick = function() {
