@@ -11,6 +11,7 @@ let myScore = 0;
 let useGravity = true;
 let canJump = true;
 let floating = false;
+let pause = false;
 
 if (randomHeight === 1) {
     nextTileHeight = 150;
@@ -87,7 +88,7 @@ let score = function() {
     myScore++;
 };
 
-let jump = function() {
+let key = function() {
     //make the player jump
     $("body").keydown(function (event) {
         let letter = event.key;
@@ -99,6 +100,15 @@ let jump = function() {
                 useGravity = false;
                 playerHeight = playerHeight + 150;
                 setTimeout(reGravity, 125);
+            };
+        };
+        if (letter === ' ') {
+            if (pause === false) {
+                pause = true;
+                scroll = false;
+            } else {
+                pause = false;
+                scroll = true;
             };
         };
     });
@@ -115,8 +125,10 @@ let tick = function() {
         playerTile();
         gravity();
         score();
-        jump();
+        key();
         tileX = tileX - 1;
+        setTimeout(tick, 0.1);
+    } else if (pause === true) {
         setTimeout(tick, 0.1);
     } else {
         //stop game
